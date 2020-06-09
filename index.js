@@ -24,6 +24,7 @@ function displayResults(responseJson) {
     $('#results-list').append(
       `<li><h3>${responseJson.data[i].fullName}</h3>
       <p>${responseJson.data[i].description}</p>
+      <p><a href = '${responseJson.data[i].url}'>Park website</a></p>
       <img src='${responseJson.data[i].images[0].url}'>
       </li>`
     )};
@@ -31,12 +32,12 @@ function displayResults(responseJson) {
   $('#results').removeClass('hidden');
 };
 
-function getParks(query, maxResults=10) {
+function getParks(query, stateCode='MT', maxResults=10) {
   const params = {
     api_key: apiKey,
     q: query,
-    limit: maxResults,
-    type: 'video'
+    stateCode,
+    limit: maxResults
   };
   const queryString = formatQueryParams(params)
   const url = searchURL + '?' + queryString;
@@ -61,7 +62,8 @@ function watchForm() {
     event.preventDefault();
     const searchTerm = $('#js-search-term').val();
     const maxResults = $('#js-max-results').val();
-    getParks(searchTerm, maxResults);
+    const stateCode = $('#js-state-code').val();
+    getParks(searchTerm, stateCode, maxResults);
   });
 }
 
