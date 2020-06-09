@@ -22,10 +22,15 @@ function displayResults(responseJson) {
     //list with the  title, description,
     //and first image
     $('#results-list').append(
-      `<li><h3>${responseJson.data[i].fullName}</h3>
+      `<li>
+      <img src='${responseJson.data[i].images[0].url}'>
+      <div class='park-details'>
+      <h3>${responseJson.data[i].fullName}</h3>
+      <p>${responseJson.data[i].addresses[0].city}, 
+      ${responseJson.data[i].addresses[0].stateCode}</p>
       <p>${responseJson.data[i].description}</p>
       <p><a href = '${responseJson.data[i].url}'>Park website</a></p>
-      <img src='${responseJson.data[i].images[0].url}'>
+      </div>
       </li>`
     )};
   //display the results section  
