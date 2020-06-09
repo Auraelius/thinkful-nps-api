@@ -6,6 +6,11 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+input, select {
+  margin: 10px;
+  display: flow-root;
+}
+
 button, input[type="text"] {
   padding: 5px;
 }
